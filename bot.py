@@ -7,7 +7,7 @@ from config import API_ID, API_HASH, BOT_TOKEN, LOG_CHANNEL, BOT_NAME
 from handlers.search import register_search_handlers
 from handlers.season import register_season_handlers
 from handlers.quality import register_quality_handlers
-from handlers.autoindex import register_autoindex_handlers
+from handlers.index import register_autoindex_handlers
 from handlers.admin import register_admin_handlers
 from handlers.file_cache import register_filecache_handlers
 from handlers.user_logs import register_userlog_handlers
