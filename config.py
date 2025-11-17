@@ -25,3 +25,6 @@ LOGS_COLLECTION = os.getenv("LOGS_COLLECTION", "user_logs")
 
 LOG_CHANNEL = -1002801544620   # your log channel ID
 BOT_NAME = "agsfilterV3_bot"
+
+# Default number of search results to show
+DEFAULT_SEARCH_LIMIT = 10
