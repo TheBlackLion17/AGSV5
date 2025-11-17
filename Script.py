@@ -42,6 +42,14 @@ If you need custom features, contact the admin.
 Developer: **@yourusername**
 """
 
+    RESTART_GC_TXT = """
+<b>🔄 𝖡𝗈𝗍 𝖱𝖾𝗌𝗍𝖺𝗋𝗍𝖾𝖽!</b>
+
+📅 𝖣𝖺𝗍𝖾 : <code>{}</code>  
+⏰ 𝖳𝗂𝗆𝖾 : <code>{}</code>  
+🌐 𝖳𝗂𝗆𝖾𝗓𝗈𝗇𝖾 : <code>Asia/Kolkata</code>  
+🛠️ 𝖡𝗎𝗂𝗅𝖽 𝖲𝗍𝖺𝗍𝗎𝗌 : <code>𝗏2 
+
     # When no result found
     NO_RESULT = """
 ❌ **No results found!**
