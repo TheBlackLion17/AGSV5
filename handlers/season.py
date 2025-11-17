@@ -2,7 +2,7 @@ from pyrogram import Client, filters
 from utils.keyboards import seasons_keyboard, episodes_keyboard
 from database.database import db
 
-db = MediaDB()
+
 
 def register_season_handlers(app: Client):
 
