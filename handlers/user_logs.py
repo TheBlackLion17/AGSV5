@@ -6,8 +6,8 @@ from config import ADMINS
 
 def register_userlog_handlers(bot):
 
-    # Log all commands sent by users
-    @bot.on_message(filters.command(None))
+    # Log all commands (valid commands start with /)
+    @bot.on_message(filters.regex(r"^/"))
     async def log_commands(client, message):
         try:
             user_id = message.from_user.id
@@ -46,7 +46,7 @@ def register_userlog_handlers(bot):
         except Exception as e:
             logger.error(f"[LOG ERROR] {e}")
 
-    # /mylog - user sees their own activity
+    # /mylog
     @bot.on_message(filters.command("mylog"))
     async def my_logs(client, message):
         user_id = message.from_user.id
@@ -56,7 +56,7 @@ def register_userlog_handlers(bot):
             await message.reply("📭 No logs found for you.")
             return
 
-        text = "📘 **Your last 20 logs:**\n\n"
+        text = "📘 **Your last logs:**\n\n"
         for l in logs:
             text += f"• {l.get('action')} — {l.get('details', {})}\n"
 
@@ -71,7 +71,7 @@ def register_userlog_handlers(bot):
             await message.reply("📭 No logs found.")
             return
 
-        text = "📘 **Latest 30 Logs:**\n\n"
+        text = "📘 **Latest Logs:**\n\n"
         for l in logs:
             text += f"• User `{l.get('user_id')}` → {l.get('action')} — {l.get('details', {})}\n"
 
