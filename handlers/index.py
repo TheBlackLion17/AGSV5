@@ -4,7 +4,7 @@ from config import AUTOINDEX_CHANNELS
 from utils.logger import logger
 
 
-def autoindex_handlers(bot):
+def register_autoindex_handlers(bot):
 
     @bot.on_message(filters.channel & filters.incoming)
     async def channel_watcher(client, message):
