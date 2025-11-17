@@ -91,3 +91,47 @@ def languages_keyboard(series_id, languages):
     ])
 
     return InlineKeyboardMarkup(buttons)
+
+# -----------------------------------------------------------
+# EPISODES KEYBOARD
+# -----------------------------------------------------------
+def episodes_keyboard(series_id, season_no, episodes_list):
+    """
+    episodes_list example:
+    [
+        {'episode_no': 1, 'file_id': 'abc'},
+        {'episode_no': 2, 'file_id': 'xyz'},
+        ...
+    ]
+    """
+
+    buttons = []
+    row = []
+
+    for ep in episodes_list:
+        ep_no = ep["episode_no"]
+        file_id = ep["file_id"]
+
+        row.append(
+            InlineKeyboardButton(
+                f"Episode {ep_no}",
+                callback_data=f"episode_{series_id}_{season_no}_{ep_no}_{file_id}"
+            )
+        )
+
+        if len(row) == 2:  # Two buttons per row
+            buttons.append(row)
+            row = []
+
+    if row:
+        buttons.append(row)
+
+    # Back Button
+    buttons.append([
+        InlineKeyboardButton(
+            "⬅ Back",
+            callback_data=f"season_{series_id}_{season_no}"
+        )
+    ])
+
+    return InlineKeyboardMarkup(buttons)
