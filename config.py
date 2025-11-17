@@ -29,3 +29,4 @@ BOT_NAME = "agsfilterV3_bot"
 
 # Default number of search results to show
 DEFAULT_SEARCH_LIMIT = 10
+PORT = int(os.getenv("PORT", 8081))
