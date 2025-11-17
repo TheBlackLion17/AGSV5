@@ -4,7 +4,7 @@ from config import ADMINS
 from utils.logger import logger
 
 
-def admin_handlers(bot):
+def register_admin_handlers(bot):
 
     # /stats
     @bot.on_message(filters.command(["stats"]) & filters.user(ADMINS))
