@@ -7,6 +7,8 @@ load_dotenv()
 API_ID = int(os.getenv("API_ID", "20919286"))
 API_HASH = os.getenv("API_HASH", "57b85f72104db3f08f9795b0410eb556")
 BOT_TOKEN = os.getenv("BOT_TOKEN", "8348783837:AAHGHlZLej61NVYMGiEJcLaa6k6ouLRiIkE")
+SESSION = environ.get('SESSION', 'Media_search')
+
 
 MONGO_URI = os.getenv("MONGO_URI", "mongodb+srv://akku:akku@cluster0.7smnpac.mongodb.net/?appName=Cluster0")
 DB_NAME = os.getenv("DB_NAME", "cluster0")
