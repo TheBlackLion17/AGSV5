@@ -23,7 +23,9 @@ def season_handlers(bot):
         qualities = list(selected.get('quality', {}).keys())
         markup = make_quality_buttons(item_id, season_no, qualities)
 
-        await query.message.edit_caption(f"🎬 **{item['title']}**
-📌 Select quality for **Season {season_no}**", reply_markup=markup)
-        log_user_action(query.from_user.id, getattr(query.from_user, 'username', None), 'select_season', {'item_id': item_id, 'season': season_no})
-        await query.answer()
+        await query.message.edit_caption(
+    f"""🎬 **{item['title']}**
+📌 Select quality for **Season {season_no}**""",
+    reply_markup=markup
+)
+
