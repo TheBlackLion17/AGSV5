@@ -3,8 +3,7 @@ from database.database import get_series_by_id, log_user_action
 from utils.logger import logger
 
 
-def quality_handlers(bot):
-
+def register_quality_handlers(bot):
     @bot.on_callback_query(filters.regex(r"^quality_"))
     async def quality_send(client, query):
         """
