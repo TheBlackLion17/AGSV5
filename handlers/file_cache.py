@@ -1,6 +1,6 @@
 from pymongo import ASCENDING
 from config import FILE_CACHE_TTL
-from database import db
+from database.database import db
 import time
 
 cache = db['file_cache']
