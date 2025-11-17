@@ -22,3 +22,6 @@ POSTER_PLACEHOLDER = os.getenv("POSTER_PLACEHOLDER", "https://i.ibb.co/album-pla
 # Other options
 FILE_CACHE_TTL = int(os.getenv("FILE_CACHE_TTL", "86400"))  # seconds
 LOGS_COLLECTION = os.getenv("LOGS_COLLECTION", "user_logs")
+
+LOG_CHANNEL = -1001234567890   # your log channel ID
+BOT_NAME = "Series AutoFilter Bot"
