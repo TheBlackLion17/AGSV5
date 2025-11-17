@@ -49,13 +49,8 @@ async def start_web_server():
 async def send_startup_log(app: Client):
     """Send bot online notification to the log channel."""
     try:
-        await app.send_message(
-            LOG_CHANNEL,
-            LOG_MSG.format(
-                bot_name=BOT_NAME,
-                time=datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            )
-        )
+        await app.send_message(chat_id=LOG_CHANNEL, text=script.RESTART_GC_TXT.format(today, time))
+        
     except Exception as error:
         print(f"[Startup-Log] Failed to send log: {error}")
 
