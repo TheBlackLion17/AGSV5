@@ -1,4 +1,4 @@
-from database import log_user_action
+from database.database import log_user_action
 
 
 def user_logs_handlers(bot):
