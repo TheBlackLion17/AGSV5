@@ -10,7 +10,8 @@ from config import (
     BOT_TOKEN,
     LOG_CHANNEL,
     BOT_NAME,
-    PORT         # <-- Added PORT support
+    PORT,
+    SESSION# <-- Added PORT support
 )
 
 # Handlers
@@ -62,15 +63,18 @@ async def send_startup_log(app: Client):
 # ---------------------------------------------------------------------------
 # MAIN BOT LAUNCHER
 # ---------------------------------------------------------------------------
-def main():
+class Bot(Client):
 
-    # Initialize bot session
-    app = Client(
-        "AutoFilterBot",
-        api_id=API_ID,
-        api_hash=API_HASH,
-        bot_token=BOT_TOKEN
-    )
+    def __init__(self):
+        super().__init__(
+            name=SESSION,
+            api_id=API_ID,
+            api_hash=API_HASH,
+            bot_token=BOT_TOKEN,
+            workers=50,
+            plugins={"root": "handlers"},
+            sleep_threshold=5,
+        )
 
     # Register handlers
     register_search_handlers(app)
