@@ -1,5 +1,6 @@
 from dotenv import load_dotenv
 import os
+from os import environ
 
 load_dotenv()
 
@@ -23,7 +24,7 @@ POSTER_PLACEHOLDER = os.getenv("POSTER_PLACEHOLDER", "https://i.ibb.co/album-pla
 FILE_CACHE_TTL = int(os.getenv("FILE_CACHE_TTL", "86400"))  # seconds
 LOGS_COLLECTION = os.getenv("LOGS_COLLECTION", "user_logs")
 
-LOG_CHANNEL = -1002801544620   # your log channel ID
+LOG_CHANNEL = int(environ.get('LOG_CHANNEL', '-1002801544620'))   # your log channel ID
 BOT_NAME = "agsfilterV3_bot"
 
 # Default number of search results to show
