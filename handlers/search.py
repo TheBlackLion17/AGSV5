@@ -1,6 +1,6 @@
 from pyrogram import filters
 from utils.keyboards import make_quality_buttons
-from database import get_series_by_id, log_user_action
+from database.database import get_series_by_id, log_user_action
 from utils.logger import logger
 
 
