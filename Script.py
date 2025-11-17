@@ -75,4 +75,4 @@ Use the buttons below to view files.
 """
 
     # Logging messages
-    LOG_MESSAGE = "📥 User: {user} | Action: {action} | Details: {details}"
+    LOG_MSG = "📥 User: {user} | Action: {action} | Details: {details}"
