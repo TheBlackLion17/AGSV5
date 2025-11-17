@@ -23,7 +23,7 @@ from handlers.file_cache import register_filecache_handlers
 from handlers.user_logs import register_userlog_handlers
 
 # Script (messages)
-from script import *
+from Script import *
 
 
 # ---------------------------------------------------------------------------
