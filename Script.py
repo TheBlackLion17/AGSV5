@@ -48,7 +48,7 @@ Developer: **@yourusername**
 📅 𝖣𝖺𝗍𝖾 : <code>{}</code>  
 ⏰ 𝖳𝗂𝗆𝖾 : <code>{}</code>  
 🌐 𝖳𝗂𝗆𝖾𝗓𝗈𝗇𝖾 : <code>Asia/Kolkata</code>  
-🛠️ 𝖡𝗎𝗂𝗅𝖽 𝖲𝗍𝖺𝗍𝗎𝗌 : <code>𝗏2 
+🛠️ 𝖡𝗎𝗂𝗅𝖽 𝖲𝗍𝖺𝗍𝗎𝗌 : <code>𝗏2 """
 
     # When no result found
     NO_RESULT = """
