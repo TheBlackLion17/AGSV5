@@ -10,7 +10,7 @@ def admin_handlers(bot):
     async def cmd_stats(client, message):
         stats = get_stats()
         await message.reply(f"Series: {stats['series_count']}")
-Logs: {stats['logs_count']}")
+Logs: (stats['logs_count'])")
 
     # /broadcast <text>
     @bot.on_message(filters.command(["broadcast"]) & filters.user(ADMINS))
