@@ -28,12 +28,12 @@ def insert_or_update_series(series_doc):
         return collection.insert_one(series_doc).inserted_id
 
 # Logs
-def log_user_action(user_id, username, action, meta=None):
+def log_user_action(user_id, username, action, details=None):
     logs.insert_one({
         "user_id": user_id,
         "username": username,
         "action": action,
-        "meta": meta or {},
+        "details": details or {},
         "ts": __import__('datetime').datetime.utcnow()
     })
 
