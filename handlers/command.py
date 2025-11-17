@@ -5,32 +5,34 @@ from Script import *
 from config import *
 
 
+ def@Client.on_message(filters.private & filters.command(["start"]))
+async def start(client, message):
+    user_id = message.chat.id
+    old = insert(int(user_id))
+    
+    try:
+        id = message.text.split(' ')[1]
+    except IndexError:
+        id = None
 
-def register_commands(app: Client):
-    @app.on_message(filters.command("start") & filters.private)
-    async def start_command(client, message):
-        """Handle /start command with photo, text, and buttons"""
-
-        # Create inline keyboard
-        buttons = InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton(
-                        script_data.BUTTONS["help"], callback_data="help"
-                    ),
-                    InlineKeyboardButton(
-                        script_data.BUTTONS["about"], callback_data="about"
-                    )
-                ]
-            ]
+    loading_sticker_message = await message.reply_sticker("CAACAgUAAxkBAAJZtmZSPxpeDEIwobQtSQnkeGbwNjsyAAJjDgACjPuwVS9WyYuOlsqENQQ")
+    await asyncio.sleep(2)
+    await loading_sticker_message.delete()
+    
+    text = f"""Hello {message.from_user.mention} \n\n➻ This Is An Advanced And Yet Powerful Rename Bot.\n\n➻ Using This Bot You Can Rename And Change Thumbnail Of Your Files.\n\n➻ You Can Also Convert Video To File Aɴᴅ File To Video.\n\n➻ This Bot Also Supports Custom Thumbnail And Custom Caption.\n\n<b>Bot Is Made By @AgsModsOG</b>"""
+    
+    button = InlineKeyboardMarkup([
+        [InlineKeyboardButton("📢 Updates", url="https://t.me/AgsModsOG"),
+        InlineKeyboardButton("💬 Support", url="https://t.me/AgsModsOG")],
+        [InlineKeyboardButton("🛠️ Help", callback_data='help'),
+        InlineKeyboardButton("❤️‍🩹 About", callback_data='about')],
+        [InlineKeyboardButton("🧑‍💻 Developer 🧑‍💻", url="https://t.me/ags_mods_bot")]
+        ])
+    
+    await message.reply_photo(
+        photo=START_PIC,
+        caption=text,
+        reply_markup=button,
+        quote=True
         )
-
-        # Send photo with caption and buttons
-        await client.send_photo(
-            chat_id=message.chat.id,
-            photo=START_PIC,
-            caption=script_data.START_TXT.format(
-                mention=message.from_user.mention
-            ),
-            reply_markup=buttons
-        )
+    return    
