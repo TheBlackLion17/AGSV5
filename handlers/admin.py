@@ -1,5 +1,5 @@
 from pyrogram import filters
-from database import get_stats, log_user_action, collection
+from database.database import get_stats, log_user_action, collection
 from config import ADMINS
 from utils.logger import logger
 
@@ -9,7 +9,7 @@ def admin_handlers(bot):
     @bot.on_message(filters.command(["stats"]) & filters.user(ADMINS))
     async def cmd_stats(client, message):
         stats = get_stats()
-        await message.reply(f"Series: {stats['series_count']}
+        await message.reply(f"Series: {stats['series_count']}")
 Logs: {stats['logs_count']}")
 
     # /broadcast <text>
