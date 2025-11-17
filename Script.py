@@ -1,8 +1,6 @@
-class script:
-# script.py
-# Contains long texts, captions, button labels, messages, etc.
 
-class script:
+
+class script(object):
 
     START_TXT = """
 👋 **Hello {mention}!**
