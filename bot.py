@@ -22,7 +22,7 @@ app = Client(
     api_hash=API_HASH,
     bot_token=BOT_TOKEN,
     workers=50,
-    plugins={"root": "handlers"},
+    plugins={"root": "plugins"},
     sleep_threshold=5
 )
 
@@ -48,10 +48,7 @@ async def send_startup_log():
     today = datetime.now().strftime("%Y-%m-%d")
     time = datetime.now().strftime("%H:%M:%S")
     try:
-        await app.send_message(
-            chat_id=LOG_CHANNEL,
-            text=script.RESTART_GC_TXT.format(today=today, time=time)
-        )
+        await app.send_message(chat_id=LOG_CHANNEL, text=script.RESTART_GC_TXT.format(today, time))
     except Exception as e:
         print(f"[Startup-Log] Failed: {e}")
 
