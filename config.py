@@ -30,3 +30,6 @@ BOT_NAME = "agsfilterV3_bot"
 # Default number of search results to show
 DEFAULT_SEARCH_LIMIT = 10
 PORT = int(os.getenv("PORT", 8081))
+
+# Replace this with your start image URL or local file path
+START_PIC = "https://envs.sh/Vq1.jpg/IMG20251115482.jpg"
