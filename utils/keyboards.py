@@ -1,137 +1,40 @@
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
-
-# -----------------------------------------------------------
-# SEASONS KEYBOARD
-# -----------------------------------------------------------
-def seasons_keyboard(series_doc):
-    """
-    Create season selection buttons.
-    series_doc must contain:
-    {
-        '_id': ObjectId,
-        'seasons': [
-            {'season_no': 1, 'quality': {...}},
-            {'season_no': 2, 'quality': {...}},
-            ...
-        ]
-    }
-    """
-
-    buttons = []
-
-    for season in series_doc.get("seasons", []):
-        buttons.append([
-            InlineKeyboardButton(
-                f"Season {season['season_no']}",
-                callback_data=f"season_{series_doc['_id']}_{season['season_no']}"
-            )
-        ])
-
-    # Back Button
-    buttons.append([
-        InlineKeyboardButton("⬅ Back", callback_data="back_menu")
-    ])
-
-    return InlineKeyboardMarkup(buttons)
-
-
-# -----------------------------------------------------------
-# QUALITY KEYBOARD
-# -----------------------------------------------------------
-def quality_keyboard(series_id, season_no, qualities_dict):
-    """
-    qualities_dict example:
-    {
-        "720p": [...],
-        "1080p": [...],
-        "HDRip": [...],
-    }
-    """
-
-    buttons = []
-
-    for quality in qualities_dict.keys():
-        safe_q = quality.replace(" ", "_")
-        buttons.append([
-            InlineKeyboardButton(
-                quality,
-                callback_data=f"quality_{series_id}_{season_no}_{safe_q}"
-            )
-        ])
-
-    buttons.append([
-        InlineKeyboardButton("⬅ Back", callback_data="back_menu")
-    ])
-
-    return InlineKeyboardMarkup(buttons)
-
-
-# -----------------------------------------------------------
-# LANGUAGES KEYBOARD
-# -----------------------------------------------------------
-def languages_keyboard(series_id, languages):
-    """
-    languages example:
-    ["English", "Hindi", "Tamil", "Telugu"]
-    """
-
-    buttons = []
-
-    for lang in languages:
-        buttons.append([
-            InlineKeyboardButton(
-                lang,
-                callback_data=f"lang_{series_id}_{lang}"
-            )
-        ])
-
-    buttons.append([
-        InlineKeyboardButton("⬅ Back", callback_data="back_menu")
-    ])
-
-    return InlineKeyboardMarkup(buttons)
-
-# -----------------------------------------------------------
-# EPISODES KEYBOARD
-# -----------------------------------------------------------
-def episodes_keyboard(series_id, season_no, episodes_list):
-    """
-    episodes_list example:
-    [
-        {'episode_no': 1, 'file_id': 'abc'},
-        {'episode_no': 2, 'file_id': 'xyz'},
-        ...
+def start_keyboard():
+    kb = [
+        [InlineKeyboardButton('🔎 Search', switch_inline_query_current_chat='')],
+        [InlineKeyboardButton('📡 Browse dumps', callback_data='browse_dumps')]
     ]
-    """
+    return InlineKeyboardMarkup(kb)
 
-    buttons = []
-    row = []
 
-    for ep in episodes_list:
-        ep_no = ep["episode_no"]
-        file_id = ep["file_id"]
+def media_result_buttons(media_id: str, title: str):
+    kb = [
+        [InlineKeyboardButton('📺 View Series', callback_data=f'series_{media_id}')],
+        [InlineKeyboardButton('▶️ Send', callback_data=f'send_{media_id}')]
+    ]
+    return InlineKeyboardMarkup(kb)
 
-        row.append(
-            InlineKeyboardButton(
-                f"Episode {ep_no}",
-                callback_data=f"episode_{series_id}_{season_no}_{ep_no}_{file_id}"
-            )
-        )
 
-        if len(row) == 2:  # Two buttons per row
-            buttons.append(row)
-            row = []
+def series_navigation_buttons(series_name: str, season: int):
+    # list qualities or episodes
+    kb = [
+        [InlineKeyboardButton('Choose Quality', callback_data=f'qualities|{series_name}|{season}')],
+        [InlineKeyboardButton('Back', callback_data='back_to_search')]
+    ]
+    return InlineKeyboardMarkup(kb)
 
-    if row:
-        buttons.append(row)
 
-    # Back Button
-    buttons.append([
-        InlineKeyboardButton(
-            "⬅ Back",
-            callback_data=f"season_{series_id}_{season_no}"
-        )
-    ])
-
-    return InlineKeyboardMarkup(buttons)
+def make_paginated_buttons(items, prefix, page=0, per_page=8):
+    kb = []
+    start = page * per_page
+    for i, item in enumerate(items[start:start+per_page]):
+        kb.append([InlineKeyboardButton(item['label'], callback_data=f"{prefix}|{item['id']}")])
+    nav = []
+    if start > 0:
+        nav.append(InlineKeyboardButton('⬅️ Prev', callback_data=f'{prefix}|page|{page-1}'))
+    if start + per_page < len(items):
+        nav.append(InlineKeyboardButton('Next ➡️', callback_data=f'{prefix}|page|{page+1}'))
+    if nav:
+        kb.append(nav)
+    return InlineKeyboardMarkup(kb)
