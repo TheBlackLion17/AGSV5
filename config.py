@@ -35,3 +35,6 @@ PORT = int(os.getenv("PORT", 8081))
 
 # Replace this with your start image URL or local file path
 START_PIC = (environ.get('START_PIC', 'https://files.catbox.moe/n2b9g1.jpg')).split()
+
+DUMP_CHANNELS = os.getenv('DUMP_CHANNELS', '-1002518840015')  # comma-separated channel IDs or usernames
+FORCE_SUBSCRIBE_CHANNEL = os.getenv('FORCE_SUBSCRIBE_CHANNEL','-1002452484299')
