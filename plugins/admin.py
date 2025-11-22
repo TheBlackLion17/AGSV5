@@ -32,5 +32,3 @@ async def register_admin(app):
         users = await settings_col.count_documents({'_id':{'$exists':True}})
         await message.reply(f'Media count: {total}')
 
-
----
